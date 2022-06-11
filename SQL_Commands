@@ -1,0 +1,37 @@
+SELECT * FROM osoba WHERE id = 2;
+SELECT * FROM adres WHERE city = 'Katowice';
+SELECT * FROM osoba WHERE id > 2;
+SELECT * FROM adres WHERE id BETWEEN 2 AND 4;
+SELECT * FROM adres WHERE id IN (2,4);
+
+SELECT * FROM osoba WHERE firt_name LIKE 'A%';
+SELECT * FROM osoba WHERE firt_name LIKE '%A';
+SELECT * FROM adres WHERE city LIKE 'W%';
+
+SELECT * FROM osoba WHERE firt_name LIKE 'A%' OR firt_name LIKE 'C%';
+SELECT * FROM adres WHERE city LIKE '%E' OR city LIKE '%A';
+SELECT * FROM adres WHERE city NOT LIKE 'Z%';
+
+SELECT DISTINCT city FROM adres ORDER BY city ASC;
+SELECT DISTINCT city FROM adres ORDER BY city DESC;
+
+SELECT c.city FROM adres c WHERE c.city LIKE '%E' OR c.city LIKE '%A';
+
+SELECT * FROM osoba o JOIN adres a on o.adres_id = a.id;
+SELECT * FROM osoba o JOIN adres a on a.id = o.adres_id WHERE firt_name = 'Jan' AND city = 'Katowice';
+
+SELECT COUNT(0) FROM adres;
+SELECT COUNT(0) FROM osoba WHERE firt_name = 'Jan'
+
+SELECT MIN(id) FROM adres;
+SELECT MAX(id) FROM adres;
+
+SELECT AVG(id) FROM osoba;
+
+SELECT firt_name, COUNT(1) AS Ilość FROM osoba GROUP BY firt_name;
+
+UPDATE osoba SET last_name = 'Rurła' where last_name = 'Baryka';
+UPDATE osoba o JOIN adres a on a.id = o.adres_id SET street = 'Srzykowska' WHERE o.id = 2;
+UPDATE osoba SET firt_name = 'Jan' WHERE firt_name != 'Jan';
+
+DELETE osoba FROM osoba WHERE id = 8;
